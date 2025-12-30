@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: license-system
+    env: docker
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: DB_HOST
+        fromDatabase:
+          name: license-db
+          property: host
+      - key: DB_NAME
+        fromDatabase:
+          name: license-db
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: license-db
+          property: user
+      - key: DB_PASS
+        fromDatabase:
+          name: license-db
+          property: password
+      - key: SECRET_KEY
+        generateValue: true
+
+databases:
+  - name: license-db
+    databaseName: license_system
+    user: admin
